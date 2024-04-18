@@ -9,10 +9,25 @@ body {
 .hero_img {
   background-image: linear-gradient(
       to right bottom,
-      rgba(24, 23, 22, 0.35),
-      rgba(49, 46, 44, 0.35)
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.85)
     ),
     url("./imgs/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat:no-repeat ;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.story_img{
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.85)
+    ),
+    url("./imgs/people.jpg");
   background-size: cover;
   background-position: center;
   background-repeat:no-repeat ;
