@@ -3,6 +3,7 @@ import Header from "./header";
 import { Outlet } from "react-router-dom";
  import { useNavigation } from "react-router-dom";
 import Loader from './Loader'
+import Footer from "./footer";
 
 
 export default function AppLayout() {
@@ -13,11 +14,12 @@ export default function AppLayout() {
 
    {isLoading && <Loader />}
       
-    <Header />
+    {/* <Header /> */}
     <main>
     <Outlet />
     </main>
     <CartOverview /> 
+    <Footer/>
     </div>
   )
 }
