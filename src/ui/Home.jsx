@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import Testimonials from "./Testimonials";
 
 function Home() {
   const navigate = useNavigate()
@@ -65,6 +68,8 @@ function Home() {
     </div>
   </div>
 </section>
+{/* testimonials */}
+ <Testimonials />
     </>
   );
 }
