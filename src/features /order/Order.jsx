@@ -48,7 +48,7 @@ import { useLoaderData } from "react-router-dom";
 function Order() {
   // const order =  useLoade rData()
   const order =  useLoaderData()
-  console.log(order)
+
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
@@ -62,7 +62,7 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-    <div>
+    <div className="h-lvh">
       <div>
         <h2>Status</h2>
 
@@ -92,10 +92,11 @@ function Order() {
 
 
 export async function loader({params}){
-
   const order = await getOrder(params.orderId)
   return order
 }
 
 
 export default Order;
+
+

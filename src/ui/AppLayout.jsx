@@ -8,17 +8,14 @@ import Footer from "./footer";
 
 export default function AppLayout() {
    const navigation = useNavigation();
+   console.log(navigation);
    const isLoading  = navigation.isLoading === "loading";
   return (
     <div className="layout">
-
    {isLoading && <Loader />}
-      
-    {/* <Header /> */}
     <main>
     <Outlet />
     </main>
-    {/* <CartOverview />  */}
     <Footer/>
     </div>
   )

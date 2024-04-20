@@ -7,7 +7,7 @@ import 'react-awesome-slider/dist/styles.css';
 
 
 export default function Testimonials() {
-    const [currSlide , setCurrentSlide] = useState(0)
+
   return (
 //     <section className=" flex justify-center items-center py-[90px]">
 //     <button className="text-[#C20303]  absolute left-0 rotate-90 ">PREV</button>
@@ -26,7 +26,7 @@ export default function Testimonials() {
   
 //    </div>
 //   </section>
-<AwesomeSlider    animation="foldOutAnimation"  bullets={false} className="aws-btn">
+<AwesomeSlider  bullets={true}  animation="foldOutAnimation"  className="aws-btn">
     <div >
      <div className="flex items-center flex-col ">
      <img className="w-[60px] h-[60px]" src="src/imgs/Ellipse.png" alt="" />      
@@ -45,9 +45,8 @@ export default function Testimonials() {
     <div>
      <div className="flex items-center flex-col">
      <img className="w-[60px] h-[60px]" src="src/imgs/Ellipse3.png" alt="" />      
-
         <p className="text-center  mt-5">“Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”</p>
-        <span className="text-[#C20303] mt-5">Ayoub lm9owd</span>
+        <span className="text-[#C20303] mt-5">Linda</span>
       </div>
     </div>
 

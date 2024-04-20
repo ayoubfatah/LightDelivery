@@ -91,20 +91,33 @@ body {
 
 .aws-btn {
 
-  --slider-height-percentage: 28%;
-  --slider-transition-duration: 457ms;
-  --organic-arrow-thickness: 4px;
-  --organic-arrow-border-radius: 0px;
-  --organic-arrow-height: 15px;
+  --slider-height-percentage: 34%;
+  --slider-transition-duration: 377ms;
+  --organic-arrow-thickness: 5px;
+  --organic-arrow-border-radius: 17px;
+  --organic-arrow-height: 14px;
   --organic-arrow-color: #000000;
-  --control-button-width: 5%;
-  --control-button-height: 5%;
+  --control-button-width: 13%;
+  --control-button-height: 25%;
   --control-button-background: transparent;
-  --control-bullet-color: #949494;
-  --control-bullet-active-color: #3d3d3d;
-  --loader-bar-color: transparent;
-  --loader-bar-height: 2px;
+  --control-bullet-color: #969696;
+  --control-bullet-active-color: #4d4c4c;
+  --loader-bar-color: #851515;
+  --loader-bar-height: 1px;
   }
+
+  .awssld__bullets {
+    z-index: 1000;
+    position: absolute;
+    bottom: 114px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.awssld__bullets .awssld__bullets--active {
+  transform: scale(1) !important;
+}
 
   .awssld__content {
     background-color: white;
