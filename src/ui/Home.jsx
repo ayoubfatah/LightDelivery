@@ -1,25 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Testimonials from "./Testimonials";
-import SearchOrder from "../features /order/SearchOrder";
+import CreateUser from "../features /user/CreateUser";
+import { useState } from "react";
+
 
 function Home() {
+  const [clicked , setClicked] = useState(false)
+   function handleOrder(){
+     setClicked(true)
+   }
   const navigate = useNavigate()
   return (
+
+
+
+
     <>
-<nav>
-  <h1>FastDeivery</h1>
-  <SearchOrder />
-</nav>
-<main className="hero_img text-white flex  justify-center items-center text-center" >
-    <div>
-      <h1 className="text-[46px] font-bold uppercase ">
+<main className="hero_img text-white flex  justify-center items-center text-center relative" >
+    <div className="overflow-hidden">
+      <h1 className="text-[46px] font-bold uppercase  fade_in_left">
         Welcome to FastDeivery.
       </h1>
-      <p>Where Every Bite is an Experience</p>
-      <button onClick={()=> navigate("/order/new")}  className="inline-block mt-4 relative h-[40px] w-[120px]  bg-[#C20303]  ">Order Now</button>
+      <p className="fade_in_right ">Where Every Bite is an Experience</p>
+      <button onClick={ handleOrder}  className="fade_in_up inline-block mt-4 relative h-[40px] w-[120px]  bg-[#C20303]  ">Order Now</button>
     </div>
+    {clicked && <CreateUser clicked={clicked} />}
+    {/* <CreateUser/> */}
     </main>
     {/* our story  */}
     <section className="bg-white flex items-center justify-center relative  ">
@@ -82,9 +89,7 @@ function Home() {
       <p className="text-[16px] font-thin leading-tight">Who are in extremely love with eco friendly system. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <button onClick={() => navigate("/menu")} className="text-[16px] text-white font-normal inline-block mt-4  h-[40px] w-[120px] bg-[#C20303]">Our Menu</button>
     </div>
-    <div className=" overflow-hidden  h-[full] w-[full] justify-self-end">
-      <img className=" bg-cover bg-center  bg-no-repeat" src="src/imgs/people.jpg" alt="" />      
-    </div>
+    
   </div>
 </section>
     </>

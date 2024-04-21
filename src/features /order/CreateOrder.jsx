@@ -3,6 +3,7 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import Navbar from "../../ui/Navbar";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -46,8 +47,10 @@ function CreateOrder() {
 
   const cart = fakeCart;
   return (
+   <>
+   <Navbar />
     <div className="h-lvh flex justify-center items-center bg-[#fff0d5] ">
-      <div className=" w-[400px] bg-white h-[600px]  flex justify-center  items-center text-black shadow-lg" >
+      <div className=" max-w-3xl bg-white h-[600px]  flex justify-center  items-center text-black shadow-lg" >
       <Form method="POST" className="p-[50px]"  >
       <h2 className="text-lg"> Ready to order? Let's go!</h2>
 
@@ -61,13 +64,8 @@ function CreateOrder() {
         <div className="my-3">
           <label className="text-sm">Phone number *</label>
           <div className="border">
-          <PhoneInput
-          flags={true}
-          defaultCountry="MA"
-          value={value}
-          onChange={setValue}
-          className="w-full p-1"
-      />
+          <input className="w-full p-1" type="number" name="phone"  placeholder="Phone number" required />
+
           </div>
           {formErrors?.phone && <p className= "font-light text-sm text-red-600 p-1">{formErrors.phone}</p>}
         </div>
@@ -109,7 +107,7 @@ function CreateOrder() {
       <div className=" w-[400px] h-[600px] ">
         <img  className="bg-cover bg-no-repeat bg-center" src="/src/imgs/eating.jpg" alt="" />
       </div>
-    </div>
+    </div></>
   );
 }
 
@@ -125,7 +123,7 @@ export async function action({request}){
   }
    
   const errors = {}
-  if(!isValidPhone(order.phone)) errors.phone = "Please give us your correct phone number . We will need it to contact you"
+  if(!isValidPhone(order.phone)) errors.phone = "Please give us your correct phone number."
 
     if(Object.keys(errors).length > 0 ) return errors
     // if there is no bugs creatorder and redirect 

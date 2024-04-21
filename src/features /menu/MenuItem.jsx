@@ -4,8 +4,9 @@ function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   return (
-    <li>
-      <img src={imageUrl} alt={name} />
+
+      <li className="flex bg-white items-center my-10">
+      <img  className="mr-5 w-[90px] h-[90px]" src={imageUrl} alt={name} />
       <div>
         <p>{name}</p>
         <p>{ingredients.join(', ')}</p>
@@ -14,6 +15,7 @@ function MenuItem({ pizza }) {
         </div>
       </div>
     </li>
+   
   );
 }
 

@@ -13,8 +13,8 @@ export default function SearchOrder() {
        setQuery("")
     }
   return (
-<form onSubmit={handleSubmit} action="">
-   <input type="text" onChange={(e)=> setQuery(e.target.value)} placeholder="search order Number"  value={query}/>
+<form onSubmit={handleSubmit} action="" className="">
+   <input  className="h-10 bg-yellow-100  w-[300px] px-5 rounded-full" type="text" onChange={(e)=> setQuery(e.target.value)} placeholder="search order Number"  value={query}/>
    </form>
   )
 }

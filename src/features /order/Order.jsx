@@ -7,7 +7,9 @@ import {
   formatCurrency,
   formatDate,
 } from "../../utilties /helpers";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import SearchOrder from "./SearchOrder";
+import Navbar from "../../ui/Navbar";
 
 
 // const order = {
@@ -62,31 +64,45 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-    <div className="h-lvh">
-      <div>
-        <h2>Status</h2>
-
+    <>
+    <Navbar/>
+    <div className="h-lvh  max-w-3xl mx-auto">
+      <div className="flex justify-between items-center my-5">
+        <h2 className=" font-bold">Order #{id} Status</h2>
         <div>
-          {priority && <span>Priority</span>}
-          <span>{status} order</span>
+          {priority && <span className="bg-red-500 text-white py-1 px-3 rounded-full uppercase text-sm font-light">Priority</span>}
+          <span className="bg-green-500 text-white py-1 px-3 rounded-full uppercase text-sm font-light ml-3">{status} order</span>
         </div>
       </div>
 
-      <div>
+      <div className="bg-[#e7e5e4] px-5 flex justify-between items-center py-5 my-8 font-bold">
         <p>
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
             : "Order should have arrived"}
         </p>
-        <p>(Estimated delivery: {formatDate(estimatedDelivery)})</p>
+        <p className="font-light text-sm">(Estimated delivery: {formatDate(estimatedDelivery)})</p>
       </div>
 
-      <div>
+      {/* item */}
+
+      <ul>
+            <li className="my-5 py-2 border-t border-b  border-dashed" >
+              <div className="flex items-center justify-between">
+                <span><span>1 x</span> Prosciutto e Rucola</span>
+                <span className="font-bold">€16.00</span>
+              </div>
+              <span className="font-light text-sm">Tomato, Mozzarella, Prosciutto, Arugula</span>
+            </li>
+      </ul>
+
+      <div className="px-5 py-5 bg-[#e7e5e4] flex flex-col gap-2">
         <p>Price pizza: {formatCurrency(orderPrice)}</p>
         {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
-        <p>To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
+        <p className="font-bold">To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
       </div>
     </div>
+    </>
   );
 }
 
