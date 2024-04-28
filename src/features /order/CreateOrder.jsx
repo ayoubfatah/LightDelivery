@@ -4,6 +4,7 @@ import { createOrder } from "../../services/apiRestaurant";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import Navbar from "../../ui/Navbar";
+import { useSelector } from "react-redux";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -41,7 +42,7 @@ function CreateOrder() {
   const navigation = useNavigation()
   const isOrdered = navigation.state === "loading"
   const formErrors = useActionData()
-
+ const userName = useSelector(state => state.user.userName)
 
 
 
@@ -57,7 +58,7 @@ function CreateOrder() {
         <div className="my-3">
           <label className="text-sm">First Name</label>
           <div className="border">
-          <input className="w-full p-1" type="text" name="customer"  placeholder="Your Name" required />
+          <input className="w-full p-1" type="text" name="customer" defaultValue={userName}  placeholder="Your Name" required />
           </div>
         </div>
 
@@ -132,6 +133,3 @@ export async function action({request}){
 } 
 
 export default CreateOrder;
-
-
-

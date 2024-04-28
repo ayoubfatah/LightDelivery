@@ -10,6 +10,7 @@ import {
 import { Link, useLoaderData } from "react-router-dom";
 import SearchOrder from "./SearchOrder";
 import Navbar from "../../ui/Navbar";
+import OrderItem from "./OrderItem";
 
 
 // const order = {
@@ -102,6 +103,7 @@ function Order() {
         <p className="font-bold">To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
       </div>
     </div>
+
     </>
   );
 }

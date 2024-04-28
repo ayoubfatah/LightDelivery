@@ -1,14 +1,25 @@
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 function CartOverview() {
+  const pizza = useSelector(state => state.cart)
+  console.log(pizza, "lkdlslsdl");
+
+  const pizzaQuantity = pizza.cart.reduce((acc, curr) => acc + curr.quantity, 0);
+  const finallPrice = pizza.cart.reduce((acc, curr) => acc + curr.unitPrice, 0);
   return (
-    <div>
-      <p>
-        <span>23 pizzas</span>
-        <span>$23.45</span>
-      </p>
-      <Link to="/cart" >Open cart &rarr;</Link>
-    </div>
+    <li className={`${pizzaQuantity === 0 ? "hidden" : " "}  bg-black text-white px-5 py-3 fixed bottom-0 left-0 w-full list-none`	}>
+      <div className=" items-center flex  justify-between">
+       <div className="flex gap-4">
+        <span> {pizzaQuantity} PIZZAS</span>
+        <span>{finallPrice} $</span>
+       </div>
+       <div>
+        <Link to="/cart">OPEN CART</Link>
+       </div>
+      </div>
+    </li>
   );
 }
 

@@ -180,7 +180,21 @@ body {
   opacity: 0;
   transition: all 700ms ease-in-out;
 }
+.fade_out_right{
+  transform: translateX(1000px);
+  opacity: 0;
+  transition: all 700ms ease-in-out;
+}
+.fade_out_bot{
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 700ms ease-in-out;
 
+}
+.soldOut{
+  filter: grayscale(1);
+  opacity: 0.5;
+}
 /* 
 .pizzaloader {
   width: 35px;
