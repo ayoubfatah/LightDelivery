@@ -1,35 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Navbar from "../../ui/Navbar"
 import useFadeInOnScroll from '../../utilties /useObserve';
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: 'Mediterranean',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: 'Vegetale',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: 'Spinach and Mushroom',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
+import CartItem from './CartItem';
+import { clearCart} from "../cart/cartSlice";
+
 
 function Cart() {
-  const [ref , isVisible] = useFadeInOnScroll()
-  const item = useSelector(select => select.cart.cart)
+  const pizza = useSelector(state => state.cart.cart)
+  // const totalPrice =useSelector(state => state.cart?.cart[0]?.totalPrice)  
 
+  const finallPrice = pizza.reduce((acc, curr) => acc + curr.totalPrice, 0);
+
+  const dispatch = useDispatch()
+  function handleClearCart(){
+    dispatch(clearCart())
+  }
+  const [ref , isVisible] = useFadeInOnScroll()
+  const item = useSelector(select => select.cart?.cart)
  const userName = useSelector(state => state.user.userName)
   return (
     <>
@@ -38,11 +26,15 @@ function Cart() {
       <Link className='text-blue-800 mb-5' to="/menu">&larr; Back to menu</Link>
       <h2 className='font-semibold  text-[20px]'>Your cart  ,{userName}</h2>
       <ul className='my-3 '>
-        <li className='border-b border-dashed py-5'>dskldlskdl  </li>
+       {item.map((pizza , i) =>  <CartItem item={item} key={item[i].id} i={i} /> )}
       </ul>
+      <div className=' flex items-center'>
+        <span className='font-bold'>Final price :</span>
+        <span className='ml-auto font-bold'>€{finallPrice}</span>
+      </div>
       <div className='flex  gap-2  mt-10'>
         <Link to="/order/new" className="inline-block text-sm px-4 py-3 font-semibold tracking-wide uppercase transition-colors duration-300 bg-yellow-400 rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs">Order now</Link>
-        <button className="inline-block text-sm px-4 py-3   font-semibold tracking-wide uppercase transition-colors duration-300 bg-white-400 border rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs"> Clear cart</button>
+        <button onClick={handleClearCart} className="inline-block text-sm px-4 py-3   font-semibold tracking-wide uppercase transition-colors duration-300 bg-white-400 border rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs"> Clear cart</button>
       </div>
     </div>
     </>

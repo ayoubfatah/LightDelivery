@@ -16,18 +16,26 @@ const userSlice = createSlice({
       
     },
     incItem(state, action){
-     const obj =  state.cart.find(obj => obj.id === action.payload) 
-     obj.quantity++;
-     obj.unitPrice = obj.unitPrice * obj.quantity
+     const item =  state.cart.find(item => item.id === action.payload) 
+     item.quantity++;
+     item.totalPrice = item.unitPrice * item.quantity
     },
     decItem(state, action){
-      const obj =  state.cart.find(obj => obj.id === action.payload) 
-      obj.quantity--
+     const item =  state.cart.find(item => item.id === action.payload) 
+     item.quantity--
+     item.totalPrice = item.unitPrice * item.quantity
+
+    },
+    clearCart(state){
+      state.cart = []
     }
   }
 })
 
-export const {addItem , deleteItem ,incItem ,decItem} = userSlice.actions
+
+export const {addItem , deleteItem ,incItem ,decItem ,clearCart} = userSlice.actions
 
 
 export default userSlice.reducer  
+
+export  const getCurrentQuantityById = id => state => state.cart.cart.find((item)=> item.id === id )?.quantity ?? 0 ;

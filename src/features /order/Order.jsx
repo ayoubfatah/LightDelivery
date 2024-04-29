@@ -11,6 +11,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import SearchOrder from "./SearchOrder";
 import Navbar from "../../ui/Navbar";
 import OrderItem from "./OrderItem";
+import CartItem from "../cart/CartItem";
+import { useSelector } from "react-redux";
 
 
 // const order = {
@@ -51,7 +53,18 @@ import OrderItem from "./OrderItem";
 function Order() {
   // const order =  useLoade rData()
   const order =  useLoaderData()
+  const item = useSelector(select => select.cart?.cart)
+   
+  // const totalPrice =useSelector(state => state.cart?.cart[0]?.totalPrice)
+  
 
+
+  
+  const pizzaQuantity = item.reduce((acc, curr) => acc + curr.quantity, 0);
+  const finallPrice = item.reduce((acc, curr) => acc + curr.totalPrice, 0);
+
+
+ console.log(finallPrice , "order");
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
@@ -60,8 +73,9 @@ function Order() {
     priorityPrice,
     orderPrice,
     estimatedDelivery,
-    cart,
+  
   } = order;
+  console.log(order , "lkdsl");
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
@@ -88,19 +102,13 @@ function Order() {
       {/* item */}
 
       <ul>
-            <li className="my-5 py-2 border-t border-b  border-dashed" >
-              <div className="flex items-center justify-between">
-                <span><span>1 x</span> Prosciutto e Rucola</span>
-                <span className="font-bold">€16.00</span>
-              </div>
-              <span className="font-light text-sm">Tomato, Mozzarella, Prosciutto, Arugula</span>
-            </li>
+      {item.map((pizza , i) =>  <OrderItem item={item} key={item.id} i={i} /> )}
       </ul>
 
       <div className="px-5 py-5 bg-[#e7e5e4] flex flex-col gap-2">
-        <p>Price pizza: {formatCurrency(orderPrice)}</p>
+        <p>Price pizza: {formatCurrency(finallPrice)}</p>
         {priority && <p>Price priority: {formatCurrency(priorityPrice)}</p>}
-        <p className="font-bold">To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
+        <p className="font-bold">To pay on delivery: {formatCurrency(finallPrice + priorityPrice)}</p>
       </div>
     </div>
 

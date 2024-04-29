@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useFadeInOnScroll from '../../utilties /useObserve';
 import { useDispatch, useSelector } from 'react-redux';
 import store from '../../stores/store';
@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 function CreateUser({clicked}) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const refFocus = useRef()
   const [username, setUsername] = useState('');
+  const [ref , isVisible] = useFadeInOnScroll()
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,14 +19,15 @@ function CreateUser({clicked}) {
     navigate("/menu")
     
   }
+ 
   
-  const [ref , isVisible] = useFadeInOnScroll()
   return (
     <form ref={ref} onSubmit={handleSubmit} className={`p-10 overflow-hidden absolute o top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  transform   `}>
      <div className={`${isVisible ? "fadeIn" : "" } opacity-0 translate-y-[100px]`}>
      <p className='mb-3'>👋 Welcome! Please start by telling us your name:</p>
      <div className='flex items-center gap-5'>
      <input
+      
         className='h-10 bg-yellow-100 text-black    w-[200px] px-5 rounded-full'
         type="text"
         placeholder="Your full name"
