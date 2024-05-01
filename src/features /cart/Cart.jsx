@@ -4,6 +4,7 @@ import Navbar from "../../ui/Navbar"
 import useFadeInOnScroll from '../../utilties /useObserve';
 import CartItem from './CartItem';
 import { clearCart} from "../cart/cartSlice";
+import EmptyCart from './EmptyCart';
 
 
 function Cart() {
@@ -19,9 +20,14 @@ function Cart() {
   const [ref , isVisible] = useFadeInOnScroll()
   const item = useSelector(select => select.cart?.cart)
  const userName = useSelector(state => state.user.userName)
+  if (pizza.length <= 0) {
+    return  <EmptyCart/>
+   
+  }
   return (
     <>
       <Navbar></Navbar>
+
     <div ref={ref} className={`${isVisible ? "opacity-1 transition-all duration-500 scale-100 " : " scale-0 opacity-0 "}  h-lvh flex flex-col  max-w-3xl mx-auto my-5 `}>
       <Link className='text-blue-800 mb-5' to="/menu">&larr; Back to menu</Link>
       <h2 className='font-semibold  text-[20px]'>Your cart  ,{userName}</h2>

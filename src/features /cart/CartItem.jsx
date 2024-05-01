@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem , incItem ,decItem , } from "../cart/cartSlice";
+import EmptyCart from './EmptyCart'
 
 function CartItem({item ,i}) {
 
@@ -7,16 +8,23 @@ function CartItem({item ,i}) {
   const {name , quantity , totalPrice , id} = item[i]
   console.log(id);
   function handleQuantityInc(){
-    console.log("inc");
     dispatch(incItem(id))
   }
+  console.log(quantity ,"lkjdls");
   function handleQuantityDec(){
-  dispatch(decItem(id))
+    if(quantity) {
+      dispatch(decItem(id))
+
+    }
   }
   function handleDelete(){
    dispatch( deleteItem(id))
   }
+ 
   return (
+  <>
+   
+
     <li 
     className='border-b border-dashed py-5 flex justify-between'>
         <span>{quantity}x {name} </span>
@@ -31,6 +39,7 @@ function CartItem({item ,i}) {
 
         </div>
     </li>  
+      </>
   );
 }
 

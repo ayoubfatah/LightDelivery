@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 function OrderItem({item ,i}) {
  console.log(item);
   const {name , quantity , totalPrice , ingredients} = item[i]
-  console.log(ingredients);
+ 
   return (
     <li 
     className='border-b border-dashed py-5 flex justify-between'>

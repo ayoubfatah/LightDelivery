@@ -13,13 +13,10 @@ function MenuItem({ pizza , i }) {
   const [quantity , setQuantity ] = useState(0)
   const dispatch = useDispatch()
   function handleQuantityInc(){
-    setQuantity(q =>  q + 1 )
     dispatch(incItem(id))
     
   }
   function handleQuantityDec(){
-    if(quantity <= 0) return
-    setQuantity(q =>  q  - 1 )
     dispatch(decItem(id))
   }
 

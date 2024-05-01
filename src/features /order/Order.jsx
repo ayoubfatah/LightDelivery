@@ -7,7 +7,7 @@ import {
   formatCurrency,
   formatDate,
 } from "../../utilties /helpers";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useFetcher, useLoaderData } from "react-router-dom";
 import SearchOrder from "./SearchOrder";
 import Navbar from "../../ui/Navbar";
 import OrderItem from "./OrderItem";
@@ -50,13 +50,15 @@ import { useSelector } from "react-redux";
 //   priorityPrice: 19,
 // };
 
+
+
 function Order() {
   // const order =  useLoade rData()
   const order =  useLoaderData()
   const item = useSelector(select => select.cart?.cart)
    
   // const totalPrice =useSelector(state => state.cart?.cart[0]?.totalPrice)
-  
+
 
 
   
@@ -64,7 +66,7 @@ function Order() {
   const finallPrice = item.reduce((acc, curr) => acc + curr.totalPrice, 0);
 
 
- console.log(finallPrice , "order");
+
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const {
     id,
@@ -75,7 +77,6 @@ function Order() {
     estimatedDelivery,
   
   } = order;
-  console.log(order , "lkdsl");
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
@@ -121,8 +122,7 @@ export async function loader({params}){
   const order = await getOrder(params.orderId)
   return order
 }
-
-
 export default Order;
+
 
 
