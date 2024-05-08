@@ -5,6 +5,7 @@ import useFadeInOnScroll from '../../utilties /useObserve';
 import CartItem from './CartItem';
 import { clearCart} from "../cart/cartSlice";
 import EmptyCart from './EmptyCart';
+import toast from 'react-hot-toast';
 
 
 function Cart() {
@@ -16,6 +17,7 @@ function Cart() {
   const dispatch = useDispatch()
   function handleClearCart(){
     dispatch(clearCart())
+    toast.success("cart has been cleared successfully ")
   }
   const [ref , isVisible] = useFadeInOnScroll()
   const item = useSelector(select => select.cart?.cart)
@@ -39,7 +41,7 @@ function Cart() {
         <span className='ml-auto font-bold'>€{finallPrice}</span>
       </div>
       <div className='flex  gap-2  mt-10'>
-        <Link to="/order/new" className="inline-block text-sm px-4 py-3 font-semibold tracking-wide uppercase transition-colors duration-300 bg-yellow-400 rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs">Order now</Link>
+        <Link onClick={()=>{ toast("fill the form to get the order") }} to="/order/new" className="inline-block text-sm px-4 py-3 font-semibold tracking-wide uppercase transition-colors duration-300 bg-yellow-400 rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs">Order now</Link>
         <button onClick={handleClearCart} className="inline-block text-sm px-4 py-3   font-semibold tracking-wide uppercase transition-colors duration-300 bg-white-400 border rounded-full text-stone-800 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed px-4 py-2 md:px-5 md:py-2.5 text-xs"> Clear cart</button>
       </div>
     </div>
